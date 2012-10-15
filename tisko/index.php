@@ -1,1 +1,1 @@
-<?php  header('Location:/tisko/view/login.php'); ?>
+<?php  header('Location:/tisko/view/login.php');?>
