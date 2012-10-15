@@ -1,0 +1,273 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/tisko/common/js/jquery.js"></script>
+        <script type="text/javascript">
+            
+            $(document).ready(function(){
+                $("button").click(function(){
+                    
+                    var tags = document.getElementsByTagName("p");
+                    var b = document.body.childNodes;
+        
+                    var elements = getTagElementsByChildClass("father","pp");
+                    if(elements != undefined)
+                        alert(elements.length);
+       
+                    hideElement("p3","id");
+                    showElement("p2","id");
+      
+                    innerHTML("p1",("W3S")+("here"),"id");
+                    setAttr("tp","href","http://yahoomail.com","id");
+                       
+                    appendHTML("p1","html","id");
+                    
+                    afterHTML("child1","p",["id"],["test"],"test doen","id");
+                    
+                    rmv("child1","id");
+                    
+                     
+                    var elements = getTagElementsByChildClass("father","pp");
+                    if(elements != undefined)
+                        alert(elements.length);
+                    
+   
+                });
+            });
+
+            function innerHTML(id,html,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+               
+                if(id) 
+                    id.innerHTML=html;
+               
+            }
+
+            function setAttr(id,attr,val,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                    
+                if(id)
+                    id.setAttribute(attr,val);
+               
+            }
+
+
+            function getAttr(id,attr,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                if(id)    
+                    return id.getAttribute(attr);
+                
+            }
+
+            function rmv(id, type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                
+                if(id)
+                    id.parentNode.removeChild(id);
+            }
+
+            function hideElement(id,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                if(id)    
+                    id.style.display = "none";
+            }
+
+            function showElement(id,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                if(id)
+                    id.style.display = "inline";
+               
+            }
+
+            function appendHTML(id,html,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                if(id)
+                    id.innerHTML=  id.innerHTML + html;
+                
+            }
+            
+            function afterHTML(id,tag,attr,val,html,type)
+            {
+                if(type == "id")
+                    id = document.getElementById(id);
+                
+                if(id && attr.length == val.length)
+                {
+                    var nod = document.createElement(tag);
+                        
+                    for(i=0;i<attr.length;i++)
+                        nod.setAttribute(attr[i], val[i]);
+                        
+                    nod.innerHTML=html;
+                    id.parentNode.insertBefore(nod, id.nextSibling);
+                        
+                }
+                
+                
+            }
+            
+            function ifExists(id)
+            {
+                id = document.getElementById(id);
+                
+                return id ? true : false;
+                
+            }
+            
+            function getElement(id)
+            {
+                return document.getElementById(id);
+            }
+            
+            
+            function merge( first, second ) {
+                var i = first.length,
+                j = 0;
+
+                if ( typeof second.length === "number" ) {
+                    for ( var l = second.length; j < l; j++ ) {
+                        first[ i++ ] = second[ j ];
+                    }
+
+                } else {
+                    while ( second[j] !== undefined ) {
+                        first[ i++ ] = second[ j++ ];
+                    }
+                }
+
+                first.length = i;
+
+                return first;
+            }
+        
+            function getTagElementsByChildId(id,tag,childId)
+            {
+            
+                if(id == "")
+                {
+                    var elements = document.getElementsByTagName(tag.toString().toUpperCase());
+                }
+                else
+                {
+                    var elements = [];
+                    var ele = document.getElementById(id).childNodes;
+                    var l = ele.length;
+                    for(i =0 ; i<l; i++)
+                    {
+                        elements = elements.concat(getAllChildNodes(ele[i]));
+                    }
+                    
+                    
+                    
+                }
+                
+                
+                
+                var elements1 = [];
+            
+                var len = elements.length;
+            
+                for(i =0 ; i<len; i++)
+                {
+                    if(elements[i] && elements[i].tagName){
+                        var child = elements[i].getAttribute("id");
+                        var childTag = elements[i].tagName;
+                    
+                        if(childTag && child && childTag.toString().toUpperCase() == tag.toString().toUpperCase() && child.toString().indexOf(childId, 0) == 0)
+                        {
+                    
+                            elements1[elements1.length] = elements[i];
+                        }
+                    }
+                                       
+                }
+               
+                alert(elements1.length);
+            }
+            
+            function getTagElementsByChildClass(id,childClass)
+            {
+                var elements = document.getElementById(id).childNodes;
+                
+                var elements1 = [];
+            
+                var len = elements.length;
+                            
+                for(i =0 ; i<len; i++)
+                {
+                    var child = elements[i].getAttribute("class");
+                                        
+                    if( child != null && child.toString() == childClass)
+                    {
+                        elements1[elements1.length] = elements[i];
+                    }
+                        
+                }
+                return (elements1);
+            }
+
+
+            function getAllChildNodes(element)
+            {
+                var childs = [];
+                if(element.childNodes)
+                {
+                    var elements =  element.childNodes;
+                    var len = elements.length;
+                    for(i=0 ; i< len ; i++)
+                    {
+                        childs = childs.concat(getAllChildNodes(elements[i]));
+                    }
+                }
+                else
+                {
+                    childs[childs.length] = element;           
+                }
+                       
+                return childs;
+                
+                
+            }
+
+          
+        </script>
+
+
+
+
+        <script>
+   	
+    
+        </script>
+
+
+    </head>
+
+    <body>
+        <h2>This is a heading</h2>
+        <p id ="p1" class ="pp" >This is a paragraph.</p>
+        <a id="tp" class ="pp" href ="http://www.google.com" target="new">google</a>
+
+        <p id ="p2" class ="pp" style="background-color: yellow; display: none" >This is a paragraph 1 .</p>
+
+        <p id ="p3" class ="pp" style="background-color: yellow; "  >This is a paragraph 2 .</p>
+
+        <div id="father"><div id="child1" class ="pp" >A child 1 </div><div id="child2" class ="pp">A child 2</div></div>
+        <button>Click me</button>
+    </body>
+</html>
+
+
